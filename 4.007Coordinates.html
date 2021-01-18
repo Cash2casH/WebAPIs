@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinates</title>
+  <style>
+    body {
+      background: black;
+      cursor: pointer;
+    }
+    .line {
+      position: absolute;
+      background: white;
+    }
+    .horizontal {
+      width: 100%;
+      height: 1px;
+      top: 50%;
+    }
+
+    .vertical {
+      width: 1px;
+      height: 100%;
+      left: 50%;
+    }
+
+    .target {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50px;
+      transform: translate(-50%, -50%);
+    }
+    
+    .tag{
+      color: white;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(20%, 20%);
+      font-size: 24px;
+    }
+  </style>
+</head>
+<body>
+  <div class="line horizontal"></div>
+  <div class="line vertical"></div>
+  <img class="target" src="./target.png" alt="">
+  <span class="tag"></span>
+  <script>
+    const horizontal = document.querySelector('.horizontal');
+    const vertical = document.querySelector('.vertical');
+    const target = document.querySelector('.target');
+    const tag = document.querySelector('.tag');
+    document.addEventListener('mousemove', (e)=> {
+      const x = e.clientX;
+      const y = e.clientY;
+      vertical.style.left = `${x}px`;
+      horizontal.style.top = `${y}px`;
+      target.style.left = `${x}px`;;
+      target.style.top = `${y}px`;
+      tag.innerText = `${x}, ${y}`;
+      tag.style.left = `${x}px`;
+      tag.style.top = `${y}px`;
+    })
+  </script>
+</body>
+</html>

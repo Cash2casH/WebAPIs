@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Coordinates</title>
+  <style>
+    .box{
+      background: blanchedalmond;
+      width: 200px;
+      height: 200px;
+      margin: 10px;
+    }
+    .colorBox{
+      background: blueviolet;
+    }
+    .buttons{
+      position: fixed;
+      top: 20px;
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box colorBox"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="box"></div>
+  <div class="buttons">
+    <button class="scroll__100px">Scroll by 100px(y)</button>
+    <button class="to__100px">Scroll to 100px(y)</button>
+    <button class="to__ColorBox">Scroll into special</button>
+  </div>
+</body>
+<script>
+  const colorBox = document.querySelector('.colorBox');
+  const rect = colorBox.getBoundingClientRect();
+  colorBox.addEventListener('click', (e)=> {
+    console.log(`rectX: ${rect.x}, rectY: ${rect.y}`);
+    console.log(`clientX: ${e.clientX}, clientY: ${e.clientY}`);
+    console.log(`pageX: ${e.pageX}, pageY: ${e.pageY}`);
+  })
+  const scroll100px = document.querySelector('.scroll__100px');
+  const to100px = document.querySelector('.to__100px');
+  const toColorBox = document.querySelector('.to__ColorBox');
+  scroll100px.addEventListener('click', ()=> {
+    window.scrollBy({top: 100, behavior:'smooth'});
+  })
+  // 버튼 클릭시 100px씩 이동하는것 실패 => scrollBy함수 사용!!
+
+  to100px.addEventListener('click', (e=> {
+    window.scrollTo({top: 100, behavior:'smooth'});
+  }))
+  toColorBox.addEventListener('click', ()=> {
+    const rectY = rect.top;
+    // window.scrollTo({top: rectY, behavior:'smooth'});
+    colorBox.scrollIntoView({behavior:'smooth'});
+  })
+</script>
+</html>
